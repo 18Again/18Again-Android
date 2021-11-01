@@ -79,7 +79,6 @@ public class MainPageView extends AppCompatActivity {
                                 goToLogin();
                             }
                             List<BoardResponse> list = response.body();
-                            Collections.reverse(list);
                             li.clear();
                             adapter.notifyDataSetChanged();
 
@@ -211,23 +210,31 @@ public class MainPageView extends AppCompatActivity {
         });
 
         //검색 기능
-//        edit_search.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable edit) {
-//                String search = edit.toString();
-//                ((MyAdapter) lv_board.getAdapter()).getFilter().filter(search);
-//            }
-//        });
+        edit_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable edit) {
+                String search = edit.toString();
+                ((MyAdapter) lv_board.getAdapter()).getFilter().filter(search);
+            }
+        });
+
+        btn_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPageView.class);
+                startActivity(intent);
+            }
+        });
 
         btn_mypage.setOnClickListener(new View.OnClickListener() {
             @Override

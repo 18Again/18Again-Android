@@ -28,17 +28,18 @@ class MyAdapter extends BaseAdapter implements Filterable{
         this.context = context;
         this.layout = layout;
         this.li = li;
+        this.li_search = li;
         inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return li.size();
+        return li_search.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return li.get(position);
+        return li_search.get(position);
     }
 
     @Override
@@ -65,7 +66,7 @@ class MyAdapter extends BaseAdapter implements Filterable{
         TextView nickname = (TextView) convertView.findViewById(R.id.user);
         TextView update_time = (TextView) convertView.findViewById(R.id.update_time);
 
-        MainPageView.WritingList w = li.get(position);
+        MainPageView.WritingList w = li_search.get(position);
         title.setText(w.title);
         date.setText(w.date);
         gender.setText(w.gender);
@@ -102,15 +103,15 @@ class MyAdapter extends BaseAdapter implements Filterable{
                     }
                 }
 
-                results.values = li;
-                results.count = li.size();
+                results.values = li_item;
+                results.count = li_item.size();
             }
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            li = (ArrayList<MainPageView.WritingList>) results.values;
+            li_search = (ArrayList<MainPageView.WritingList>) results.values;
             if(results.count > 0) {
                 notifyDataSetChanged();
             } else {
